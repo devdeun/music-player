@@ -1,0 +1,61 @@
+$lineheight: 85px;
+
+.top100-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 40px 0;
+}
+.top100-chart-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.top100-chart-table {
+  max-width: 1200px;
+  th,
+  td {
+    text-align: center;
+    vertical-align: middle;
+    &.th-left,
+    &.td-left {
+      text-align: left;
+      padding-left: 30px;
+    }
+  }
+  tr {
+    height: $lineheight - 1px;
+    border-bottom: 1px solid #f2f2f2;
+  }
+}
+
+.top100-song-cover {
+  width: 60px;
+}
+.top100-song-artists {
+  color: $gray;
+  padding-top: 5px;
+}
+.top100-rank {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rank-icon-new {
+  color: $green;
+}
+.rank-icon-same {
+  color: $lightgray;
+}
+.rank-icon-up {
+  color: $orange;
+  + i {
+    color: $orange;
+  }
+}
+.rank-icon-down {
+  color: $skyblue;
+  + i {
+    color: $skyblue;
+  }
+}
