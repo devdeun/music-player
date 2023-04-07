@@ -6,13 +6,9 @@ $lineheight: 85px;
   font-weight: 700;
   margin: 40px 0;
 }
-.top100-chart-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .top100-chart-table {
-  max-width: 1200px;
+  max-width: 800px;
+  margin: 0 auto;
   th,
   td {
     text-align: center;

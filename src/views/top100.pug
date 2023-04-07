@@ -1,53 +1,52 @@
-extends base
-block content
-    h1.top100-title Top 100
-    section.top100-chart-section
-        table.top100-chart-table(summary="멜론 Top 100 차트")
-            colgroup 
-                col.top100-rank-col
-                col.top100-song-info-col
-                col.top100-song-play-col
-                col.top100-song-add-col
 
-            thead.top100-chart-thead
-                tr
-                    th.th-left(scope="col" colspan="2" id="rank" headers="rank" width="20%") 순위
-                    th.th-left(scope="col" colspan="2" id="song-info" headers="song-info" width="60%") 곡정보
-                    th(scope="col" width="10%") 듣기
-                    th(scope="col" width="10%") 담기
-                tr.none  
-                    th(scope="col") 
-                    th(scope="col") 순위변동
-                    th(scope="col" headers="song-info" id="song-cover") 앨범아트
-                    th(scope="col" headers="song-info" id="song-title-artists") 제목/아티스트
-                    th(scope="col") 
-                    th(scope="col")
-            tbody
-                each chart in charts
-                    tr.top100-chart-tr
-                        td
-                            div.top100-rank
-                                span.top100-current-rank= chart.rank
-                                span.none 위 
-                        td
-                            div.top100-rank
-                                - if (chart.rankStatus === "단계 상승")
-                                    i.material-icons.rank-icon-up arrow_drop_up 
-                                - else if (chart.rankStatus === "단계 하락")
-                                    i.material-icons.rank-icon-down arrow_drop_down
-                                - else if (chart.rankStatus === "순위 진입")
-                                    i.rank-icon-new new
-                                - else
-                                    i.material-icons.rank-icon-same remove
-                                i= chart.rankChange > 0 ? chart.rankChange : ""
-                        td.td-left
-                            img.top100-song-cover(src=chart.cover alt=chart.title)
-                        td.td-left
-                            div
-                                div.top100-song-title= chart.title
-                                div.top100-song-artists= chart.artists.length === 1 ? chart.artists[0] : chart.artists.join(", ")
-                        td
-                            i.material-icons play_arrow
-                        td 
-                            i.material-icons add
-                        
+section.top100-chart-section
+    h2.top100-title Top 100
+    table.top100-chart-table(summary="멜론 Top 100 차트")
+        colgroup 
+            col.top100-rank-col
+            col.top100-song-info-col
+            col.top100-song-play-col
+            col.top100-song-add-col
+
+        thead.top100-chart-thead
+            tr
+                th.th-left(scope="col" colspan="2" id="rank" headers="rank" width="20%") 순위
+                th.th-left(scope="col" colspan="2" id="song-info" headers="song-info" width="60%") 곡정보
+                th(scope="col" width="10%") 듣기
+                th(scope="col" width="10%") 담기
+            tr.none  
+                th(scope="col") 
+                th(scope="col") 순위변동
+                th(scope="col" headers="song-info" id="song-cover") 앨범아트
+                th(scope="col" headers="song-info" id="song-title-artists") 제목/아티스트
+                th(scope="col") 
+                th(scope="col")
+        tbody
+            each chart in charts
+                tr.top100-chart-tr
+                    td
+                        div.top100-rank
+                            span.top100-current-rank= chart.rank
+                            span.none 위 
+                    td
+                        div.top100-rank
+                            - if (chart.rankStatus === "단계 상승")
+                                i.material-icons.rank-icon-up arrow_drop_up 
+                            - else if (chart.rankStatus === "단계 하락")
+                                i.material-icons.rank-icon-down arrow_drop_down
+                            - else if (chart.rankStatus === "순위 진입")
+                                i.rank-icon-new new
+                            - else
+                                i.material-icons.rank-icon-same remove
+                            i= chart.rankChange > 0 ? chart.rankChange : ""
+                    td.td-left
+                        img.top100-song-cover(src=chart.cover alt=chart.title)
+                    td.td-left
+                        div
+                            div.top100-song-title= chart.title
+                            div.top100-song-artists= chart.artists.length === 1 ? chart.artists[0] : chart.artists.join(", ")
+                    td
+                        i.material-icons play_arrow
+                    td 
+                        i.material-icons add
+                    
