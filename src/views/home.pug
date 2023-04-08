@@ -1,12 +1,7 @@
 extends base
 
 block content
-    section.search-section
-        form#search-form
-            input.search-input(type="text" placeholder="노래 또는 가수를 입력하세요" maxlength="20" name="search")
-            button.search-button(type="submit")
-                i.material-icons search
-        ul.search-result-list
+    include ./musicPlayer.pug
     include ./top100.pug
 
 

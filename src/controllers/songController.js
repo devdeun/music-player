@@ -1,6 +1,6 @@
 // import Song from "../models/Song";
 // import User from "../models/User";
-import { searchSongFromAPI } from "../models/Song";
+import { fetchYoutubeInfoFromUrl } from "../models/Song";
 import Chart from "../models/Chart";
 
 export const home = async (req, res) => {
@@ -13,11 +13,11 @@ export const home = async (req, res) => {
   }
 };
 
-export const searchResult = async (req, res) => {
+export const youtubeInfo = async (req, res) => {
   try {
-    const keyword = req.query.keyword;
-    const searchResults = await searchSongFromAPI(encodeURIComponent(keyword));
-    res.json(searchResults);
+    const url = req.query.url;
+    const info = await fetchYoutubeInfoFromUrl(url);
+    res.json(info);
   } catch (err) {
     console.error(err);
   }

@@ -5,13 +5,26 @@
 
 import axios from "axios";
 
-export const searchSongFromAPI = async keyword => {
-  const url = `https://ws.audioscrobbler.com/2.0/?method=track.search&track=${keyword}&api_key=${process.env.LASTFM_API_KEY}&format=json`;
+export const fetchYoutubeInfoFromUrl = async url => {
+  const getVideoIdFromUrl = url => {
+    const match = url.match(/(?:\/|%3D|v=)([0-9A-Za-z_-]{11}).*/);
+    return match ? match[1] : null;
+  };
+  const videoId = getVideoIdFromUrl(url);
+  if (!videoId) return;
+
   return await axios
-    .get(url)
+    .get(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${process.env.YOUTUBE_API_KEY}`
+    )
     .then(response => {
-      const songList = response.data.results.trackmatches.track;
-      return songList;
+      const video = response.data.items[0];
+      return {
+        id: video.id,
+        title: video.snippet.title,
+        thumbnail: video.snippet.thumbnails.high.url,
+        channelTitle: video.snippet.channelTitle,
+      };
     })
     .catch(err => {
       console.error(err);
