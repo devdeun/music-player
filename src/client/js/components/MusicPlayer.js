@@ -17,8 +17,22 @@ export default class MusicPlayer {
       playerVars: {
         autoplay: 1,
       },
+      events: {
+        onStateChange: this.onPlayerStateChange.bind(this),
+      },
     });
     this.id = id;
+  }
+
+  onPlayerStateChange(event) {
+    console.log("onPlayerStateChange", event.data);
+    if (event.data === YT.PlayerState.ENDED) {
+      const $songlist = document.querySelectorAll(".music-playlist-item");
+      $songlist.forEach($song => {
+        const $button = $song.querySelector(".playlist-song-play-button");
+        $button.innerText = "play_arrow";
+      });
+    }
   }
 
   setPlaylist(songInfo) {
