@@ -1,11 +1,29 @@
 article.music-player-article
     section.music-player-section
         div#video-player
-    section.playlist-section
-        ul.music-playlist 
-    section.search-section
-        form#search-form
-            input.search-input(type="text" placeholder="Youtube URL을 입력하세요." name="search")
-            button.search-button(type="submit")
-                i.material-icons search
-        div.search-result
+        div.my-playlist-player
+            h2.my-playlist-player-title.eng-font
+            p.my-playlist-player-song-info
+    section.playlist-and-search-section 
+        section.search-section
+            form#search-form
+                input.search-input(type="text" placeholder="Youtube URL을 입력하세요." name="search")
+                button.search-button(type="submit")
+                    i.material-icons search
+            form#search-result-form.search-result-form
+                div.search-result-container
+                    img.search-result-img(alt="")
+                    div.search-result-info
+                        div.search-result-title
+                            label(for="searchTitle") 제목 
+                            input#searchTitle.search-title-input(type="text" name="searchTitle")
+                        div.search-result-artist
+                            label(for="searchArtist") 아티스트 
+                            input#searchArtist.search-artist-input(type="text" name="searchArtist")
+                div.search-result-button-container
+                    button.search-result-cancel-button(type="submit" data-id="cancel") 취소
+                    button.search-result-add-button(type="submit" data-id="add") 추가
+                        
+        section.playlist-section
+            p.playlist-empty-message 플레이리스트가 비어있습니다.
+            ul.music-playlist 
