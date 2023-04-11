@@ -146,7 +146,7 @@
 
 .my-playlist-player-title {
   font-weight: bold;
-  font-size: 6rem;
+  font-size: 4.5rem;
   text-align: center;
 }
 
@@ -229,8 +229,24 @@
   }
 }
 
+@media (max-width: 767px) {
+  .my-playlist-player-title {
+    font-size: 3.5rem;
+  }
+  .my-playlist-player-song-info {
+    margin: 20px 0;
+  }
+}
+
 @media (max-width: 415px) {
   .music-playlist-song-info-container {
     width: 180px;
+  }
+
+  .my-playlist-player-title {
+    font-size: 3rem;
+  }
+  .my-playlist-player-song-info {
+    font-size: 14px;
   }
 }
