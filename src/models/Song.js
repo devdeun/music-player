@@ -30,3 +30,22 @@ export const fetchYoutubeInfoFromUrl = async url => {
       console.error(err);
     });
 };
+
+export const fetchYoutubeInfoFromKeyword = async keyword => {
+  return await axios
+    .get(
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=${keyword}&type=video&key=${process.env.YOUTUBE_API_KEY}`
+    )
+    .then(response => {
+      const video = response.data.items[0];
+      return {
+        id: video.id.videoId,
+        title: video.snippet.title,
+        thumbnail: video.snippet.thumbnails.medium.url,
+        channelTitle: video.snippet.channelTitle,
+      };
+    })
+    .catch(err => {
+      console.error(err);
+    });
+};

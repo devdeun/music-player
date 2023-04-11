@@ -25,13 +25,14 @@ export default class MusicPlayer {
   }
 
   onPlayerStateChange(event) {
-    console.log("onPlayerStateChange", event.data);
     if (event.data === YT.PlayerState.ENDED) {
       const $songlist = document.querySelectorAll(".music-playlist-item");
+      const $songInfo = document.querySelector(".my-playlist-player-song-info");
       $songlist.forEach($song => {
         const $button = $song.querySelector(".playlist-song-play-button");
         $button.innerText = "play_arrow";
       });
+      $songInfo.innerText("재생 중인 곡이 없습니다.");
     }
   }
 

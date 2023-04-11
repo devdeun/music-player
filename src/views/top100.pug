@@ -44,6 +44,6 @@ section.top100-chart-section
                             div.top100-song-title= chart.title
                             div.top100-song-artists= chart.artists.length === 1 ? chart.artists[0] : chart.artists.join(", ")
                     td.top100-song-add 
-                        button.top100-song-add-btn(type="button" data-songInfo=`${chart.title} ${chart.artists.join(", ")}`)
+                        button.top100-song-add-btn(type="button" data-title=chart.title data-artist=chart.artists.join(", "))
                             i.material-icons add
                     

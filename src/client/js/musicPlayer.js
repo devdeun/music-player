@@ -5,7 +5,9 @@ const getSearchResultFromUrl = async searchValue => {
     method: "GET",
   })
     .then(response => response.json())
-    .catch(err => console.error(err));
+    .catch(err => {
+      return false;
+    });
 };
 const renderSearchResult = ({ id, title, channelTitle, thumbnail }) => {
   const $thumbnail = document.querySelector(".search-result-img");
@@ -17,7 +19,7 @@ const renderSearchResult = ({ id, title, channelTitle, thumbnail }) => {
   $channelTitleInput.value = channelTitle;
 };
 
-const renderPlaylist = ({ id, title, artist, thumbnail }) => {
+export const renderPlaylist = ({ id, title, artist, thumbnail }) => {
   const $playlist = document.querySelector(".music-playlist");
   const $li = document.createElement("li");
   const $button = document.createElement("button");
@@ -48,6 +50,10 @@ const handleSearchSubmit = async event => {
   const searchValue = $searchInput.value;
   $searchInput.value = "";
   const result = await getSearchResultFromUrl(searchValue);
+  if (!result) {
+    alert("검색 결과가 없습니다. 올바른 URL을 입력해주세요.");
+    return;
+  }
   renderSearchResult(result);
   $searchResultForm.classList.add("open");
 };
