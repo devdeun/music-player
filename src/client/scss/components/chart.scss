@@ -2,6 +2,31 @@ $lineheight: 90px;
 .top100-chart-section {
   width: 100%;
 }
+.top100-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 70px 0 30px;
+}
+.top100-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.top-100-refresh {
+  border: none;
+  background: none;
+  margin-left: 10px;
+  &.loading {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 .top100-chart-table {
   width: 100%;
@@ -25,12 +50,6 @@ $lineheight: 90px;
 }
 tbody {
   border-top: 1px solid #141414;
-}
-.top100-title {
-  margin: 70px 0 30px;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 700;
 }
 .top100-current-rank-container {
   padding: 0 10px 0 20px;

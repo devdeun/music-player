@@ -1,7 +1,7 @@
 // import Song from "../models/Song";
 // import User from "../models/User";
 import { fetchYoutubeInfoFromUrl } from "../models/Song";
-import Chart from "../models/Chart";
+import Chart, { getMelonChart } from "../models/Chart";
 
 export const home = async (req, res) => {
   try {
@@ -18,6 +18,16 @@ export const youtubeInfo = async (req, res) => {
     const url = req.query.url;
     const info = await fetchYoutubeInfoFromUrl(url);
     res.json(info);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const melonChart = async (req, res) => {
+  try {
+    await getMelonChart();
+    console.log("melonChart updated");
+    return res.redirect("/");
   } catch (err) {
     console.error(err);
   }

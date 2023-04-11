@@ -13,7 +13,7 @@ const chartSchema = new mongoose.Schema({
 const Chart = mongoose.model("Chart", chartSchema);
 
 const url = "https://www.melon.com/chart/index.htm";
-(async () => {
+export const getMelonChart = async () => {
   try {
     await Chart.deleteMany({}, err => {
       if (err) console.error("delete error", err);
@@ -45,6 +45,6 @@ const url = "https://www.melon.com/chart/index.htm";
   } catch (err) {
     console.error(err);
   }
-})();
+};
 
-module.exports = Chart;
+export default Chart;
