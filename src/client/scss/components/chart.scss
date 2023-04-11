@@ -1,13 +1,11 @@
-$lineheight: 85px;
-
-.top100-title {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin: 40px 0;
+$lineheight: 90px;
+.top100-chart-section {
+  width: 100%;
 }
+
 .top100-chart-table {
-  max-width: 800px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
   th,
   td {
@@ -17,41 +15,153 @@ $lineheight: 85px;
     &.td-left {
       text-align: left;
       padding-left: 30px;
+      box-sizing: border-box;
     }
   }
   tr {
     height: $lineheight - 1px;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid $black;
   }
+}
+tbody {
+  border-top: 1px solid #141414;
+}
+.top100-title {
+  margin: 70px 0 30px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.top100-current-rank-container {
+  padding: 0 10px 0 20px;
+  box-sizing: border-box;
 }
 
 .top100-song-cover {
-  width: 60px;
+  width: 65px;
+  border-radius: 5px;
+}
+.top100-song-title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-right: 20px;
+  line-height: 1.2em;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .top100-song-artists {
   color: $gray;
   padding-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .top100-rank {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .rank-icon-new {
+  padding-left: 10px;
   color: $green;
 }
 .rank-icon-same {
-  color: $lightgray;
+  color: $black;
 }
 .rank-icon-up {
   color: $orange;
+  margin-right: 12px;
   + i {
+    position: absolute;
+    padding-left: 15px;
     color: $orange;
   }
 }
 .rank-icon-down {
-  color: $skyblue;
+  color: $blue;
+  margin-right: 12px;
   + i {
-    color: $skyblue;
+    position: absolute;
+    padding-left: 15px;
+    color: $blue;
+  }
+}
+
+.top100-song-add {
+  padding-right: 30px;
+  box-sizing: border-box;
+}
+.top100-song-add-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid $black;
+  background: none;
+  &:hover {
+    background-color: $green;
+  }
+  i {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .top100-chart-tr td:nth-of-type(2) {
+    display: none;
+  }
+  .top100-chart-table {
+    th,
+    td {
+      &.th-left,
+      &.td-left {
+        padding-left: 20px;
+      }
+    }
+  }
+  .top100-title {
+    font-size: 1.5rem;
+  }
+  .top100-current-rank-container {
+    padding: 0 0 0 10px;
+  }
+  .top100-song-add {
+    padding-right: 20px;
+  }
+  #song-info,
+  #rank,
+  #song-add {
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 550px) {
+  .top100-chart-table {
+    table-layout: fixed;
+  }
+  .top100-rank-col {
+    width: 30px;
+  }
+  .top100-song-info-col {
+    width: 85px;
+  }
+  .top100-song-add-col {
+    width: 60%;
+  }
+  .top100-song-add-btn {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 470px) {
+  .top100-song-title {
+    max-width: 200px;
+  }
+  .top100-song-add-col {
+    width: 50%;
   }
 }

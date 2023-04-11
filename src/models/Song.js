@@ -22,7 +22,7 @@ export const fetchYoutubeInfoFromUrl = async url => {
       return {
         id: video.id,
         title: video.snippet.title,
-        thumbnail: video.snippet.thumbnails.high.url,
+        thumbnail: video.snippet.thumbnails.medium.url,
         channelTitle: video.snippet.channelTitle,
       };
     })

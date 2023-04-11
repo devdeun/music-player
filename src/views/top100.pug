@@ -1,30 +1,27 @@
 section.top100-chart-section
-    h2.top100-title Top 100
+    h2.top100-title.eng-font Top 100
     table.top100-chart-table(summary="멜론 Top 100 차트")
         colgroup 
             col.top100-rank-col
             col.top100-song-info-col
-            col.top100-song-play-col
             col.top100-song-add-col
 
-        thead.top100-chart-thead
+        thead.top100-chart-thead.none
             tr
-                th.th-left(scope="col" colspan="2" id="rank" headers="rank" width="20%") 순위
-                th.th-left(scope="col" colspan="2" id="song-info" headers="song-info" width="60%") 곡정보
-                th(scope="col" width="10%") 듣기
-                th(scope="col" width="10%") 담기
-            tr.none  
-                th(scope="col") 
-                th(scope="col") 순위변동
-                th(scope="col" headers="song-info" id="song-cover") 앨범아트
-                th(scope="col" headers="song-info" id="song-title-artists") 제목/아티스트
-                th(scope="col") 
-                th(scope="col")
+                th.th-left(scope="col" colspan="2" id="rank" headers="rank") 순위
+                th.th-left(scope="col" colspan="2" id="song-info" headers="song-info") 곡정보
+                th(scope="col" id="song-add" headers="song-add") 담기
+            tr 
+                th(scope="col" headers="rank" width="10%") 
+                th(scope="col" headers="rank" width="10%") 순위변동
+                th(scope="col" headers="song-info" id="song-cover" width="10%") 앨범아트
+                th(scope="col" headers="song-info" id="song-title-artists" width="60%") 제목/아티스트
+                th(scope="col" headers="song-add" width="10%")
         tbody
             each chart in charts
                 tr.top100-chart-tr
                     td
-                        div.top100-rank
+                        div.top100-rank.top100-current-rank-container
                             span.top100-current-rank= chart.rank
                             span.none 위 
                     td
@@ -36,16 +33,15 @@ section.top100-chart-section
                             - else if (chart.rankStatus === "순위 진입")
                                 i.rank-icon-new new
                             - else
-                                i.material-icons.rank-icon-same remove
+                                i.rank-icon-same ―
                             i= chart.rankChange > 0 ? chart.rankChange : ""
                     td.td-left
                         img.top100-song-cover(src=chart.cover alt=chart.title)
-                    td.td-left
+                    td.td-left.top100-song-info-td
                         div
                             div.top100-song-title= chart.title
                             div.top100-song-artists= chart.artists.length === 1 ? chart.artists[0] : chart.artists.join(", ")
-                    td
-                        i.material-icons play_arrow
-                    td 
-                        i.material-icons add
+                    td.top100-song-add 
+                        button.top100-song-add-btn(type="button" data-songInfo=`${chart.title} ${chart.artists.join(", ")}`)
+                            i.material-icons add
                     
