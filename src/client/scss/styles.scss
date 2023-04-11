@@ -5,6 +5,8 @@
 // Components
 @import "./components/chart.scss";
 @import "./components/player.scss";
+@import "./components/header.scss";
+@import "./components/footer.scss";
 
 // Fonts
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap");
@@ -19,6 +21,7 @@ a {
 body {
   font-family: "Spoqa Han Sans Neo", sans-serif;
   background-color: $background;
+  color: $black;
 }
 
 input {
@@ -41,16 +44,6 @@ button {
   font-size: 0;
   line-height: 0;
   overflow: hidden;
-}
-
-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-header {
-  height: 100px;
 }
 
 .eng-font {

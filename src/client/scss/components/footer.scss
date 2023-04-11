@@ -1,0 +1,19 @@
+footer {
+  background-color: $lightgray;
+  margin-top: 90px;
+  padding: 40px 0;
+  font-size: 14px;
+  color: $gray;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.2rem;
+}
+
+.footer-copyright {
+  margin-top: 20px;
+}
