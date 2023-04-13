@@ -18,7 +18,7 @@ const handleChartRefreshButtonClick = async event => {
   const $btn = event.target;
   $btn.classList.add("loading");
   await fetch("/refreshChart");
-  $btn.classList.remove("loading");
+  location.reload();
 };
 
 const handleSongAddButtonClick = async event => {
