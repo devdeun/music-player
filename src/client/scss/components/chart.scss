@@ -133,7 +133,7 @@ tbody {
   }
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 767px) {
   .top100-chart-tr td:nth-of-type(2) {
     display: none;
   }
@@ -162,7 +162,7 @@ tbody {
   }
 }
 
-@media (max-width: 550px) {
+@media screen and (max-width: 550px) {
   .top100-chart-table {
     table-layout: fixed;
   }
@@ -180,7 +180,7 @@ tbody {
   }
 }
 
-@media (max-width: 470px) {
+@media screen and (max-width: 470px) {
   .top100-song-title {
     max-width: 200px;
   }

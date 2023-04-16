@@ -1,6 +1,6 @@
 section.top100-chart-section
     div.top100-title-container
-        h2.top100-title.eng-font Top 100
+        h2.top100-title.eng-font-bold Top 100
         button.material-icons.top-100-refresh sync
     table.top100-chart-table(summary="멜론 Top 100 차트")
         colgroup 
@@ -29,7 +29,7 @@ section.top100-chart-section
                     td
                         div.top100-rank
                             - if (chart.rankStatus === "단계 상승")
-                                i.material-icons.rank-icon-up arrow_drop_up 
+                                i.material-icons.rank-icon-up arrow_drop_up
                             - else if (chart.rankStatus === "단계 하락")
                                 i.material-icons.rank-icon-down arrow_drop_down
                             - else if (chart.rankStatus === "순위 진입")

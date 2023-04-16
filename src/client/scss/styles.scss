@@ -9,7 +9,7 @@
 @import "./components/footer.scss";
 
 // Fonts
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap");
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
 // Defaults
@@ -19,19 +19,23 @@ a {
 }
 
 body {
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Poppins", "Spoqa Han Sans Neo", sans-serif;
+  letter-spacing: -0.3px;
   background-color: $background;
   color: $black;
 }
 
 input {
-  font-family: "Spoqa Han Sans Neo", sans-serif;
+  font-family: "Poppins", "Spoqa Han Sans Neo", sans-serif;
+  letter-spacing: -0.3px;
   &:focus {
     background-color: none;
   }
 }
 
 button {
+  font-family: "Poppins", "Spoqa Han Sans Neo", sans-serif;
+  letter-spacing: -0.3px;
   cursor: pointer;
 }
 
@@ -46,6 +50,7 @@ button {
   overflow: hidden;
 }
 
-.eng-font {
+.eng-font-bold {
   font-family: "Poppins", sans-serif;
+  font-weight: 600;
 }
