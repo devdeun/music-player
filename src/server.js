@@ -8,6 +8,7 @@ import GoogleStrategy from "passport-google-oauth20";
 import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 import authRouter from "./routers/authRouter";
+import userRouter from "./routers/userRouter";
 
 const app = express();
 const logger = morgan("dev");
@@ -61,5 +62,6 @@ app.use("/static", express.static("assets"));
 
 app.use("/", rootRouter);
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
 
 export default app;

@@ -19,3 +19,37 @@ export const getSearchResultFromKeyword = async keyword => {
       return false;
     });
 };
+
+export const getUserInfo = async () => {
+  return await fetch("/user")
+    .then(res => res.json())
+    .then(data => {
+      return data;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const getUserPlaylist = async () => {
+  return await fetch("/user")
+    .then(res => res.json())
+    .then(data => {
+      return data.playlist;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
+
+export const addSongToDB = async song => {
+  await fetch("user/playlist", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(song),
+  }).catch(error => {
+    console.log(error);
+  });
+};

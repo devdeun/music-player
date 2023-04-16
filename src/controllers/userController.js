@@ -31,3 +31,7 @@ export const logout = (req, res, next) => {
     res.redirect("/");
   });
 };
+
+export const userInfo = (req, res) => {
+  return res.json(req.session.user);
+};

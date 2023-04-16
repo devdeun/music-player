@@ -1,19 +1,21 @@
 import { INIT_PLAYLIST_TITLE } from "../utils/constants";
 import { resetSongPlayButton, setScreenSongInfo } from "../utils/domUtils";
+import { addSongToDB, getUserPlaylist } from "../utils/fetch";
 import { getPlaylistItem, getPlaylistItemButton } from "../utils/templates";
 
 export default class Playlist {
-  constructor(YoutubePlayer, title) {
+  constructor(YoutubePlayer) {
     this.$playlist = document.querySelector(".music-playlist");
     this.$playlistTitle = document.querySelector(".my-playlist-player-title");
     this.YoutubePlayer = YoutubePlayer;
-    this.title = title || INIT_PLAYLIST_TITLE;
+    this.title = INIT_PLAYLIST_TITLE;
     this.playlist = [];
     this.currentIndex = null;
   }
 
-  addSong(songInfo) {
+  async addSong(songInfo) {
     this.playlist.push(songInfo);
+    await addSongToDB(songInfo);
     this.renderPlaylistItem(songInfo);
   }
 
@@ -72,8 +74,17 @@ export default class Playlist {
     this.$playlistTitle.innerText = this.title;
   }
 
+  async renderInitialPlaylist() {
+    const playlist = await getUserPlaylist();
+    if (playlist.length) {
+      playlist.forEach(song => this.renderPlaylistItem(song));
+    }
+    this.playlist = playlist;
+  }
+
   init() {
     this.renderPlaylistTitle();
+    this.renderInitialPlaylist();
     setScreenSongInfo();
   }
 }
