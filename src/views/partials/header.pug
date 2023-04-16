@@ -32,5 +32,13 @@ header
                     <line y1="22.5" x2="36" y2="22.5" stroke="black"/>
                     <line y1="28.5" x2="36" y2="28.5" stroke="black"/>
                 </svg>
-
-
+        nav 
+            ul.header-nav-button-list
+                if loggedIn
+                    li
+                        a.header-nav-button(href="/auth/logout") Logout
+                    li
+                        a.header-nav-button(href="/mypage") MyPage
+                else
+                    li
+                        a.header-nav-button(href="/auth/google") Login

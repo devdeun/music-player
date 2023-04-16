@@ -5,7 +5,6 @@ import {
   fetchYoutubeInfoFromKeyword,
 } from "../models/Song";
 import Chart, { getMelonChart } from "../models/Chart";
-import { async } from "regenerator-runtime";
 
 export const home = async (req, res) => {
   try {
