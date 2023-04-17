@@ -26,7 +26,6 @@ export const deleteSong = async (req, res) => {
       { $pull: { playlist: { _id: id } } },
       { new: true }
     );
-    console.log(id, user, "deleted");
     req.session.user = user;
     res.sendStatus(200);
   } catch (error) {

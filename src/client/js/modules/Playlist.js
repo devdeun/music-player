@@ -1,14 +1,18 @@
-import { INIT_PLAYLIST_TITLE } from "../utils/constants";
+import {
+  DEFAULT_PLAYLIST_IMAGE,
+  INIT_PLAYLIST_TITLE,
+} from "../utils/constants";
 import { resetSongPlayButton, setScreenSongInfo } from "../utils/domUtils";
-import { addSongToDB, getUserPlaylist } from "../utils/fetch";
+import { addSongToDB, getUserInfo, getUserPlaylist } from "../utils/fetch";
 import { getPlaylistItem, getPlaylistItemButton } from "../utils/templates";
 
 export default class Playlist {
   constructor(YoutubePlayer) {
     this.$playlist = document.querySelector(".music-playlist");
     this.$playlistTitle = document.querySelector(".my-playlist-player-title");
+    this.$myPlaylist = document.querySelector(".my-playlist-player");
     this.YoutubePlayer = YoutubePlayer;
-    this.title = INIT_PLAYLIST_TITLE;
+    this.title = "";
     this.playlist = [];
     this.currentIndex = null;
   }
@@ -20,6 +24,7 @@ export default class Playlist {
   }
 
   updatePlaylistTitle(title) {
+    if (!title) title = INIT_PLAYLIST_TITLE;
     this.title = title;
     this.renderPlaylistTitle();
   }
@@ -82,9 +87,25 @@ export default class Playlist {
     this.playlist = playlist;
   }
 
+  updatePlaylistImage(imageUrl) {
+    this.$myPlaylist.style.backgroundImage = `url(${imageUrl})`;
+  }
+
+  async renderInitMyPlaylist() {
+    let playlistTitle = "MyPli";
+    let playlistImage = DEFAULT_PLAYLIST_IMAGE;
+    const user = await getUserInfo();
+    if (user) {
+      playlistTitle = user.settings.playlistTitle;
+      playlistImage = user.settings.playlistImage;
+    }
+    this.updatePlaylistTitle(playlistTitle);
+    this.updatePlaylistImage(playlistImage);
+  }
+
   init() {
-    this.renderPlaylistTitle();
     this.renderInitialPlaylist();
+    this.renderInitMyPlaylist();
     setScreenSongInfo();
   }
 }

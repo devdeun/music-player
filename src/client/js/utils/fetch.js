@@ -66,3 +66,16 @@ export const deleteSongFromDB = async id => {
     console.log(error);
   });
 };
+
+export const updateUserInfo = async userInfo => {
+  console.log("let's see what userInfo is: ", userInfo);
+  return await fetch("/user", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userInfo),
+  })
+    .then(response => response.json())
+    .catch(error => console.log(error));
+};

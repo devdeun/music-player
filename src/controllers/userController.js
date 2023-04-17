@@ -40,3 +40,21 @@ export const myPage = (req, res) => {
   if (!user) return res.redirect("/");
   return res.render("myPage", { pageTitle: "MyPage", user });
 };
+
+export const updateUserInfo = async (req, res) => {
+  const _id = req.session.user._id;
+  const { name, settings } = req.body;
+  try {
+    console.log(name, settings, _id);
+    const user = await User.findOneAndUpdate(
+      _id,
+      { $set: { name, settings } },
+      { new: true }
+    );
+    req.session.user = user;
+    return res.status(200).json({ playlistImage: settings.playlistImage });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "update user info error" });
+  }
+};
