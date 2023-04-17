@@ -12,8 +12,26 @@ const userSchema = new mongoose.Schema({
   },
   email: String,
   playlist: {
-    type: Array,
+    type: [
+      {
+        id: {
+          type: String,
+          unique: true,
+        },
+        youtubeId: String,
+        title: String,
+        artist: String,
+        thumbnail: String,
+      },
+    ],
     default: [],
+  },
+  settings: {
+    type: Object,
+    default: {
+      playlistTitle: "",
+      playlistImage: "",
+    },
   },
 });
 

@@ -5,6 +5,7 @@ export default class YoutubePlayer {
   constructor() {
     this.$containerId = IFRAME_ID;
     this.player = null;
+    this.currentId = null;
   }
 
   setPlayer(id) {
@@ -37,11 +38,11 @@ export default class YoutubePlayer {
     this.player.pauseVideo();
   }
 
-  play(id) {
-    if (!this.player) return this.setPlayer(id);
-    this.player.getVideoData().video_id !== id
-      ? this.updateSong(id)
-      : this.player.playVideo();
+  play(youtubdId, id) {
+    if (!this.player) return this.setPlayer(youtubdId);
+    if (this.currentId === id) return this.player.playVideo();
+    this.currentId = id;
+    this.updateSong(youtubdId);
   }
 
   loadIframeApi() {

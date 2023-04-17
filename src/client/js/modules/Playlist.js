@@ -39,12 +39,12 @@ export default class Playlist {
   }
 
   play(songInfo, index) {
-    const { id, title, artist } = songInfo;
+    const { id, youtubeId, title, artist } = songInfo;
     if (!index) {
       index = this.playlist.findIndex(song => song.id === id);
       this.currentIndex = index;
     }
-    this.YoutubePlayer.play(id);
+    this.YoutubePlayer.play(youtubeId, id);
     setScreenSongInfo(`${title} - ${artist}`);
   }
   prevSongPlay() {

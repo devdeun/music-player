@@ -34,7 +34,8 @@ export default class SongSearch {
     event.preventDefault();
     this.$searchResultForm.classList.remove("open");
     const songInfo = {
-      id: this.$titleInput.dataset.id,
+      id: this.$titleInput.dataset.id + Date.now(),
+      youtubeId: this.$titleInput.dataset.id,
       title: this.$titleInput.value,
       artist: this.$channelTitleInput.value,
       thumbnail: this.$thumbnail.src,

@@ -11,10 +11,11 @@ export const getPlaylistItem = ({ title, artist, thumbnail }) => {
   return $li;
 };
 
-export const getPlaylistItemButton = ({ id, title, artist }) => {
+export const getPlaylistItemButton = ({ id, youtubeId, title, artist }) => {
   const $button = document.createElement("button");
   $button.classList.add("material-icons", "playlist-song-play-button");
   $button.dataset.id = id;
+  $button.dataset.youtubeId = youtubeId;
   $button.dataset.title = title;
   $button.dataset.artist = artist;
   $button.innerText = "play_arrow";

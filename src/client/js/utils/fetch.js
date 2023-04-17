@@ -35,6 +35,7 @@ export const getUserPlaylist = async () => {
   return await fetch("/user")
     .then(res => res.json())
     .then(data => {
+      if (!data) return [];
       return data.playlist;
     })
     .catch(error => {
@@ -43,12 +44,24 @@ export const getUserPlaylist = async () => {
 };
 
 export const addSongToDB = async song => {
-  await fetch("user/playlist", {
+  await fetch("/user/playlist", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(song),
+  }).catch(error => {
+    console.log(error);
+  });
+};
+
+export const deleteSongFromDB = async id => {
+  await fetch("/user/playlist", {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ id }),
   }).catch(error => {
     console.log(error);
   });

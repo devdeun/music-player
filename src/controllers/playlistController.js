@@ -16,3 +16,21 @@ export const updatePlaylist = async (req, res) => {
     return res.status(500).json({ error: "update playlist error" });
   }
 };
+
+export const deleteSong = async (req, res) => {
+  const { id } = req.body;
+  const { userID } = req.session.user;
+  try {
+    const user = await User.findOneAndUpdate(
+      { userID },
+      { $pull: { playlist: { _id: id } } },
+      { new: true }
+    );
+    console.log(id, user, "deleted");
+    req.session.user = user;
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "delete song error" });
+  }
+};

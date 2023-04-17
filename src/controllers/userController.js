@@ -13,7 +13,6 @@ const setNewUser = async (userID, name, email) => {
 export const googleAuthCallback = async (req, res) => {
   if (!req.user) return res.redirect("/");
   const { id, displayName, emails } = req.user;
-  console.log(id, displayName, emails);
   try {
     const user = await setNewUser(id, displayName, emails[0].value);
     req.session.user = user;
@@ -34,4 +33,10 @@ export const logout = (req, res, next) => {
 
 export const userInfo = (req, res) => {
   return res.json(req.session.user);
+};
+
+export const myPage = (req, res) => {
+  const user = req.session.user;
+  if (!user) return res.redirect("/");
+  return res.render("myPage", { pageTitle: "MyPage", user });
 };

@@ -1,0 +1,37 @@
+extends base
+
+block content
+    section.my-page-setting-section
+        h2.none 내 정보
+        //- img(src=user.avatar, alt="")
+        img.my-playlist-image(src="https://images.unsplash.com/photo-1548192746-dd526f154ed9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="플레이리스트 이미지")
+        form.user-setting-form  
+            ul.user-info
+                li.user-info-item.user-name 
+                    label name : 
+                    input(type="text" maxlength="20" value=user.name)
+                li.user-info-item.user-email 
+                    label email : 
+                    input(type="text" disabled value=user.email)
+            ul.user-player-setting
+                li.user-player-setting-item.player-setting-title 
+                    label Playlist Title : 
+                    input(type="text" maxlength="20" value="MyPli") 
+                li.user-player-setting-item.player-setting-image
+                    label Image URL : 
+                    input(type="text") 
+            button.user-setting-submit-button(type="submit") Save
+    section.my-page-playlist-section
+        h2.eng-font-bold.my-playlist-title My Playlist
+        ul.my-playlist 
+            each song in user.playlist
+                li.my-playlist-item
+                    button 
+                        i.material-icons menu
+                    div.my-playlist-song-info-container         
+                        img(src=song.thumbnail, alt="")
+                        div.song-info-title-artist-container
+                            h3.playlist-song-title #{song.title}
+                            p.playlist-song-artist #{song.artist} 
+                    button.song-delete-button(type="button" data-id=song._id)
+                        i.material-icons remove
