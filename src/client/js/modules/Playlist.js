@@ -11,10 +11,24 @@ export default class Playlist {
     this.$playlist = document.querySelector(".music-playlist");
     this.$playlistTitle = document.querySelector(".my-playlist-player-title");
     this.$myPlaylist = document.querySelector(".my-playlist-player");
+    this.$audioTitle = document.querySelector(".audio-controller-song-title");
+    this.$audioArtists = document.querySelector(
+      ".audio-controller-song-artists"
+    );
+    this.$audioNoSong = document.querySelector(".audio-controller-no-song");
+    this.$audioImage = document.querySelector(".record-song-thumbnail");
+    this.$controllerPlayButton = document.querySelector(".audio-play-button");
     this.YoutubePlayer = YoutubePlayer;
     this.title = "";
     this.playlist = [];
     this.currentIndex = null;
+  }
+
+  getCurrentSongInfo() {
+    return this.playlist[this.currentIndex];
+  }
+  getPlaylist() {
+    return this.playlist;
   }
 
   async addSong(songInfo) {
@@ -36,6 +50,7 @@ export default class Playlist {
     const state = $button.innerText;
     state === "play_arrow" ? this.play(songInfo) : this.YoutubePlayer.pause();
     $button.innerText = this.togglePlayPauseButton($button);
+    this.$controllerPlayButton.innerText = $button.innerText;
     resetSongPlayButton(songInfo.id);
   }
 
@@ -43,14 +58,26 @@ export default class Playlist {
     return $button.innerText === "pause" ? "play_arrow" : "pause";
   }
 
+  updateAudioController(title, artist, thumbnail) {
+    if (!this.$audioNoSong.classList.contains("hide")) {
+      this.$audioNoSong.classList.add("hide");
+    }
+    this.$audioTitle.innerText = title;
+    this.$audioArtists.innerText = artist;
+    if (thumbnail) {
+      this.$audioImage.style.backgroundImage = `url(${thumbnail})`;
+    }
+  }
+
   play(songInfo, index) {
-    const { id, youtubeId, title, artist } = songInfo;
+    const { id, youtubeId, title, artist, thumbnail } = songInfo;
     if (!index) {
       index = this.playlist.findIndex(song => song.id === id);
       this.currentIndex = index;
     }
     this.YoutubePlayer.play(youtubeId, id);
     setScreenSongInfo(`${title} - ${artist}`);
+    this.updateAudioController(title, artist, thumbnail);
   }
   prevSongPlay() {
     if (--this.currentIndex < 0) {

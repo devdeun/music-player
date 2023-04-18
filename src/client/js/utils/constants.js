@@ -9,6 +9,7 @@ export const ALERT = {
   NO_NAME: "이름을 입력해 주세요.",
   NO_PLAYLIST_TITLE: "플레이리스트 제목을 입력해 주세요.",
   UPDATE_USER_INFO_SUCCESS: "저장되었습니다.",
+  NO_SONG_IN_PLAYLIST: "플레이리스트에 재생할 곡이 없습니다.",
 };
 
 export const DEFAULT_PLAYLIST_IMAGE =
