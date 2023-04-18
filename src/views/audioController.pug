@@ -1,4 +1,8 @@
 nav.audio-controller-nav
+    div.audio-controller-bar-container
+        div.seekbar-background
+            div.seekbar-progress
+        input#seekbar-input(type="hidden")
     div.audio-controller-wrapper
         div.audio-controller-song-container
             div.audio-controller-record-container
@@ -8,7 +12,6 @@ nav.audio-controller-nav
                 p.audio-controller-no-song 현재 재생 중인 곡이 없습니다.
                 p.audio-controller-song-title 
                 p.audio-controller-song-artists 
-        div.audio-controller-bar-container
         div.audio-controller-control-box 
             button.audio-controller-button.audio-skip-previous-button.material-icons(type="button") skip_previous
             button.audio-controller-button.audio-play-button.material-icons(type="button") play_arrow
