@@ -43,9 +43,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: process.env.PRODUCTION
-        ? "/auth/google/callback"
-        : "http://localhost:4000/auth/google/callback",
+      callbackURL: "/auth/google/callback",
       scope: ["profile", "email"],
     },
     (accessToken, refreshToken, profile, done) => {

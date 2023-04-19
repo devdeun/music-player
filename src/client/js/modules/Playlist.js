@@ -124,7 +124,7 @@ export default class Playlist {
     const user = await getUserInfo();
     if (user) {
       playlistTitle = user.settings.playlistTitle;
-      playlistImage = user.settings.playlistImage;
+      playlistImage = user.settings.playlistImage || DEFAULT_PLAYLIST_IMAGE;
     }
     this.updatePlaylistTitle(playlistTitle);
     this.updatePlaylistImage(playlistImage);
