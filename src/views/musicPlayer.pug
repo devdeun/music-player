@@ -4,6 +4,9 @@ article.music-player-article
         div.my-playlist-player
             h2.my-playlist-player-title.eng-font-bold
             p.my-playlist-player-song-info
+            div.audiowave-container.hide
+                - for (let i = 0; i < 20; i++)
+                    .wave-bar
     section.playlist-and-search-section 
         section.search-section
             form#search-form

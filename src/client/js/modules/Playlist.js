@@ -19,6 +19,7 @@ export default class Playlist {
     this.$audioRecordContainer = document.querySelector(
       ".audio-controller-record-container"
     );
+    this.$audioWave = document.querySelector(".audiowave-container");
     this.$audioImage = document.querySelector(".record-song-thumbnail");
     this.$controllerPlayButton = document.querySelector(".audio-play-button");
     this.YoutubePlayer = YoutubePlayer;
@@ -54,8 +55,8 @@ export default class Playlist {
     state === "play_arrow" ? this.play(songInfo) : this.YoutubePlayer.pause();
     $button.innerText = this.togglePlayPauseButton($button);
     this.$controllerPlayButton.innerText = $button.innerText;
-    console.log("song click");
     this.toggleRecordSpin($button);
+    this.toggleAudioWaveAnimation($button);
     resetSongPlayButton(songInfo.id);
   }
 
@@ -64,10 +65,20 @@ export default class Playlist {
   }
 
   toggleRecordSpin($button) {
-    console.log($button.innerText, "toggleRecordSpin");
     if ($button.innerText === "pause")
       this.$audioRecordContainer.classList.add("spin");
     else this.$audioRecordContainer.classList.remove("spin");
+  }
+
+  toggleAudioWaveAnimation($button) {
+    if (this.$audioWave.classList.contains("hide")) {
+      this.$audioWave.classList.remove("hide");
+    }
+    if ($button.innerText === "pause") {
+      this.$audioWave.classList.remove("stop");
+    } else {
+      this.$audioWave.classList.add("stop");
+    }
   }
 
   updateAudioController(title, artist, thumbnail) {

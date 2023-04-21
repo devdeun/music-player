@@ -51,27 +51,28 @@ export default class AudioController {
 
     this.togglePlaylistPlayPauseButton(songInfo.id);
     this.Playlist.toggleRecordSpin(this.$playButton);
+    this.Playlist.toggleAudioWaveAnimation(this.$playButton);
   }
   handlePrevButtonClick(event) {
     event.preventDefault();
     const playlistLength = this.Playlist.getPlaylist().length;
-    if (!playlistLength) return;
+    if (!playlistLength || playlistLength === 1) return;
     this.Playlist.prevSongPlay();
     const currentId = this.Playlist.getCurrentSongInfo().id;
-    if (playlistLength !== 1) {
-      this.togglePlayPauseButton(currentId);
-    }
+    this.togglePlayPauseButton(currentId);
+    this.Playlist.toggleRecordSpin(this.$playButton);
+    this.Playlist.toggleAudioWaveAnimation(this.$playButton);
   }
 
   handleNextButtonClick(event) {
     event.preventDefault();
     const playlistLength = this.Playlist.getPlaylist().length;
-    if (!playlistLength) return;
+    if (!playlistLength || playlistLength === 1) return;
     this.Playlist.nextSongPlay();
     const currentId = this.Playlist.getCurrentSongInfo().id;
-    if (playlistLength !== 1) {
-      this.togglePlayPauseButton(currentId);
-    }
+    this.togglePlayPauseButton(currentId);
+    this.Playlist.toggleRecordSpin(this.$playButton);
+    this.Playlist.toggleAudioWaveAnimation(this.$playButton);
   }
 
   init() {
