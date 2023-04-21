@@ -11,6 +11,11 @@
     display: block;
     padding-bottom: 56.25%; /* 16:9 */
   }
+  &:hover {
+    .fullscreen-button {
+      display: block;
+    }
+  }
 }
 
 #video-player {
@@ -225,6 +230,23 @@
   color: #fff;
   background-size: cover;
   background-position: center;
+
+  &.fullscreen {
+    font-size: 18px;
+    .my-playlist-player-title {
+      font-size: 10vw;
+    }
+    .my-playlist-player-song-info {
+      margin: 40px 0 30px;
+    }
+    .audiowave-container {
+      height: 60px;
+    }
+    .wave-bar {
+      width: 14px;
+      height: 60px;
+    }
+  }
 }
 
 .my-playlist-player-title {
@@ -335,4 +357,16 @@
   .my-playlist-player-song-info {
     font-size: 14px;
   }
+}
+
+.fullscreen-button {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: none;
+  color: #ffffff;
+  font-size: 32px;
+  padding: 10px 15px;
 }

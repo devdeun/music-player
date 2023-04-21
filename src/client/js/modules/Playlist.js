@@ -22,6 +22,8 @@ export default class Playlist {
     this.$audioWave = document.querySelector(".audiowave-container");
     this.$audioImage = document.querySelector(".record-song-thumbnail");
     this.$controllerPlayButton = document.querySelector(".audio-play-button");
+    this.$fullscreenButton = document.querySelector(".fullscreen-button");
+    this.$screen = document.querySelector(".music-player-section");
     this.YoutubePlayer = YoutubePlayer;
     this.title = "";
     this.playlist = [];
@@ -152,9 +154,36 @@ export default class Playlist {
     this.updatePlaylistImage(playlistImage);
   }
 
+  handleFullscreenClick(event) {
+    event.preventDefault();
+    const state = this.$fullscreenButton.innerText;
+    state === "fullscreen"
+      ? this.$screen.requestFullscreen()
+      : document.exitFullscreen();
+  }
+
+  fullscreenToggle() {
+    const state = this.$fullscreenButton.innerText;
+    if (state === "fullscreen") {
+      this.$fullscreenButton.innerText = "fullscreen_exit";
+      this.$myPlaylist.classList.add("fullscreen");
+    } else {
+      this.$fullscreenButton.innerText = "fullscreen";
+      this.$myPlaylist.classList.remove("fullscreen");
+    }
+  }
+
   init() {
     this.renderInitPlaylist();
     this.renderInitMyPlaylist();
     setScreenSongInfo();
+    this.$fullscreenButton.addEventListener(
+      "click",
+      this.handleFullscreenClick.bind(this)
+    );
+    document.addEventListener(
+      "fullscreenchange",
+      this.fullscreenToggle.bind(this)
+    );
   }
 }
