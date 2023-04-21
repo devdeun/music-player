@@ -45,7 +45,6 @@ export const updateUserInfo = async (req, res) => {
   const _id = req.session.user._id;
   const { name, settings } = req.body;
   try {
-    console.log(name, settings, _id);
     const user = await User.findOneAndUpdate(
       _id,
       { $set: { name, settings } },

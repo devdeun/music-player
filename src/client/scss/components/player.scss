@@ -164,7 +164,6 @@
 }
 .search-result-img {
   width: 100px;
-  height: fit-content;
 }
 .search-result-info {
   padding-left: 5px;
@@ -335,6 +334,9 @@
   .music-playlist-song-info-container {
     width: auto;
   }
+  .search-result-info {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -350,7 +352,6 @@
   .music-playlist-song-info-container {
     width: 180px;
   }
-
   .my-playlist-player-title {
     font-size: 2.5rem;
   }
@@ -364,6 +365,10 @@
   .wave-bar {
     width: 5px;
     height: 30px;
+  }
+
+  .playlist-section {
+    padding: none;
   }
 }
 
