@@ -20,6 +20,19 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif)$/i,
+        include: [path.resolve(__dirname, "src/client/img")],
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "img/",
+            },
+          },
+        ],
+      },
+      {
         test: /\.js$/,
         use: {
           loader: "babel-loader",
