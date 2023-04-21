@@ -5,6 +5,7 @@ import flash from "express-flash";
 import MongoStore from "connect-mongo";
 import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
+import cors from "cors";
 import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 import authRouter from "./routers/authRouter";
@@ -53,6 +54,13 @@ passport.use(
   )
 );
 
+// cors
+const corsOptions = {
+  origin: process.env.ORIGIN_URL,
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
