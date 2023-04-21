@@ -16,6 +16,9 @@ export default class Playlist {
       ".audio-controller-song-artists"
     );
     this.$audioNoSong = document.querySelector(".audio-controller-no-song");
+    this.$audioRecordContainer = document.querySelector(
+      ".audio-controller-record-container"
+    );
     this.$audioImage = document.querySelector(".record-song-thumbnail");
     this.$controllerPlayButton = document.querySelector(".audio-play-button");
     this.YoutubePlayer = YoutubePlayer;
@@ -51,11 +54,20 @@ export default class Playlist {
     state === "play_arrow" ? this.play(songInfo) : this.YoutubePlayer.pause();
     $button.innerText = this.togglePlayPauseButton($button);
     this.$controllerPlayButton.innerText = $button.innerText;
+    console.log("song click");
+    this.toggleRecordSpin($button);
     resetSongPlayButton(songInfo.id);
   }
 
   togglePlayPauseButton($button) {
     return $button.innerText === "pause" ? "play_arrow" : "pause";
+  }
+
+  toggleRecordSpin($button) {
+    console.log($button.innerText, "toggleRecordSpin");
+    if ($button.innerText === "pause")
+      this.$audioRecordContainer.classList.add("spin");
+    else this.$audioRecordContainer.classList.remove("spin");
   }
 
   updateAudioController(title, artist, thumbnail) {
@@ -106,12 +118,11 @@ export default class Playlist {
     this.$playlistTitle.innerText = this.title;
   }
 
-  async renderInitialPlaylist() {
+  async renderInitPlaylist() {
     const playlist = await getUserPlaylist();
-    if (playlist.length) {
-      playlist.forEach(song => this.renderPlaylistItem(song));
-    }
+    if (!playlist) return;
     this.playlist = playlist;
+    playlist.forEach(song => this.renderPlaylistItem(song));
   }
 
   updatePlaylistImage(imageUrl) {
@@ -131,7 +142,7 @@ export default class Playlist {
   }
 
   init() {
-    this.renderInitialPlaylist();
+    this.renderInitPlaylist();
     this.renderInitMyPlaylist();
     setScreenSongInfo();
   }

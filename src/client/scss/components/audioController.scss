@@ -30,8 +30,12 @@
 
 .audio-controller-record-container {
   position: relative;
+  min-width: 80px;
   width: 80px;
   height: 80px;
+  &.spin {
+    animation: spin 4s linear infinite;
+  }
 }
 .record-image {
   width: 100%;
