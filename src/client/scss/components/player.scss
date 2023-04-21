@@ -342,7 +342,7 @@
     font-size: 3.5rem;
   }
   .my-playlist-player-song-info {
-    margin: 20px 0;
+    margin: 10px 0;
   }
 }
 
@@ -352,10 +352,18 @@
   }
 
   .my-playlist-player-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .my-playlist-player-song-info {
     font-size: 14px;
+  }
+
+  .audiowave-container {
+    height: 30px;
+  }
+  .wave-bar {
+    width: 5px;
+    height: 30px;
   }
 }
 

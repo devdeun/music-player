@@ -74,7 +74,6 @@
   border-bottom: 1px solid $black;
   img {
     width: 110px;
-    height: fit-content;
     border-radius: 5px;
   }
   button {
@@ -125,4 +124,44 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 920px) {
+  .my-page-setting-section {
+    flex-direction: column;
+  }
+
+  .user-setting-form {
+    margin-top: 20px;
+    margin-left: none;
+    width: auto;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .my-playlist-song-info-container {
+    padding: 0 20px;
+  }
+  .my-playlist-item {
+    padding: 0 10px;
+  }
+  .user-setting-form input {
+    width: 160px;
+  }
+  .user-setting-form label {
+    width: 92px;
+  }
+  .song-info-title-artist-container {
+    padding-left: 10px;
+  }
+  .playlist-song-title {
+    margin-right: 0;
+  }
+  .my-playlist-title {
+    font-size: 1.5rem;
+  }
+  .playlist-song-artist {
+    max-width: 75px;
+  }
 }
