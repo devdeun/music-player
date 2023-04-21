@@ -53,7 +53,6 @@ export default class MyPage {
 
   setPlaylistImage(url) {
     const imageUrl = url || DEFAULT_PLAYLIST_IMAGE;
-    console.log("set image", imageUrl, url);
     this.$playlistImage.style.backgroundImage = `url(${imageUrl})`;
   }
 

@@ -32,6 +32,7 @@ export const logout = (req, res, next) => {
 };
 
 export const userInfo = (req, res) => {
+  if (!res.session.user) return res.json(null);
   return res.json(req.session.user);
 };
 

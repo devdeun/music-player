@@ -2,6 +2,7 @@ import User from "../models/User";
 
 export const updatePlaylist = async (req, res) => {
   const song = req.body;
+  if (!req.session.user) return res.status(401).json({ error: "unauthorized" });
   const { userID } = req.session.user;
   try {
     const user = await User.findOneAndUpdate(
