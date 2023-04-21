@@ -68,7 +68,6 @@ export const deleteSongFromDB = async id => {
 };
 
 export const updateUserInfo = async userInfo => {
-  console.log("let's see what userInfo is: ", userInfo);
   return await fetch("/user", {
     method: "PUT",
     headers: {

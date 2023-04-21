@@ -57,12 +57,15 @@ passport.use(
 );
 
 // cors
-const corsOptions = {
-  origin: process.env.ORIGIN_URL,
-  optionsSuccessStatus: 200,
-};
+if (process.env.ORIGIN_URL) {
+  const corsOptions = {
+    origin: process.env.ORIGIN_URL,
+    optionsSuccessStatus: 200,
+  };
 
-app.use(cors(corsOptions));
+  app.use(cors(corsOptions));
+}
+
 app.use(flash());
 app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
