@@ -1,5 +1,5 @@
-// import Song from "../models/Song";
-// import User from "../models/User";
+import Song from "../models/Song";
+
 import {
   fetchYoutubeInfoFromUrl,
   fetchYoutubeInfoFromKeyword,
@@ -29,8 +29,22 @@ export const youtubeInfoFromUrl = async (req, res) => {
 
 export const youtubeInfoFromKeyword = async (req, res) => {
   try {
-    const keyword = req.query.keyword;
-    const info = await fetchYoutubeInfoFromKeyword(encodeURIComponent(keyword));
+    const title = req.query.title;
+    const artist = req.query.artist;
+    const keyword = `${title} ${artist}`;
+    const song = await Song.find({ title: title, artist: artist });
+    let info = song[0];
+    if (!info) {
+      const songInfo = await fetchYoutubeInfoFromKeyword(
+        encodeURIComponent(keyword)
+      );
+      info = await Song.create({
+        title: title,
+        artist: artist,
+        youtubeId: songInfo.id,
+        thumbnail: songInfo.thumbnail,
+      });
+    }
     res.json(info);
   } catch (err) {
     console.log(err);

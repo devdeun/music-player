@@ -18,9 +18,10 @@ export default class Top100Chart {
   async handleSongAddButtonClick(event) {
     event.preventDefault();
     const { title, artist } = event.target.closest("button").dataset;
-    const { id: youtubeId, thumbnail } = await getSearchResultFromKeyword(
-      `${title} ${artist}`
-    );
+    const { youtubeId, thumbnail } = await getSearchResultFromKeyword({
+      title,
+      artist,
+    });
     const id = youtubeId + Date.now();
     if (!id) return alert(ALERT.CAN_NOT_FIND_SONG);
     this.Playlist.addSong({ id, youtubeId, thumbnail, title, artist });

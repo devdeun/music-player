@@ -9,8 +9,8 @@ export const getSearchResultFromUrl = async url => {
     });
 };
 
-export const getSearchResultFromKeyword = async keyword => {
-  return await fetch(`/youtubeKeyword?keyword=${keyword}`, {
+export const getSearchResultFromKeyword = async ({ title, artist }) => {
+  return await fetch(`/youtubeKeyword?title=${title}&artist=${artist}`, {
     method: "GET",
   })
     .then(response => response.json())

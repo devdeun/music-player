@@ -1,9 +1,27 @@
-// import mongoose from "mongoose";
-// const songSchema = new mongoose.Schema({});
-// const Song = mongoose.model("Song", songSchema);
-// export default Song;
-
+import mongoose from "mongoose";
 import axios from "axios";
+
+const songSchema = new mongoose.Schema({
+  youtubeId: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  artist: {
+    type: String,
+    required: true,
+  },
+  thumbnail: {
+    type: String,
+    required: true,
+  },
+});
+
+const Song = mongoose.model("Song", songSchema);
+export default Song;
 
 export const fetchYoutubeInfoFromUrl = async url => {
   const getVideoIdFromUrl = url => {
@@ -40,9 +58,7 @@ export const fetchYoutubeInfoFromKeyword = async keyword => {
       const video = response.data.items[0];
       return {
         id: video.id.videoId,
-        title: video.snippet.title,
         thumbnail: video.snippet.thumbnails.medium.url,
-        channelTitle: video.snippet.channelTitle,
       };
     })
     .catch(err => {
